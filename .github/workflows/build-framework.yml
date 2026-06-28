@@ -12,7 +12,7 @@ permissions:
 
 jobs:
     build:
-        runs-on: macos-14
+        runs-on: macos-15
 
         env:
             VERSION: 1.38.1
@@ -29,10 +29,20 @@ jobs:
             - name: Setup Xcode
               uses: maxim-lobanov/setup-xcode@v1
               with:
-                  xcode-version: "latest"
+                  xcode-version: "latest-stable"
+
+            - name: Verify Swift toolchain
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  xcodebuild -version
+                  SWIFT_VERSION="$(xcrun swift -version)"
+                  echo "$SWIFT_VERSION"
+                  echo "$SWIFT_VERSION" | grep -E 'Swift version 6\.[2-9]'
 
             - name: Install Dependencies
-              run: brew install dpkg
+              run: brew install dpkg ldid
 
             - name: Download SwiftProtobuf source
               shell: bash
@@ -64,6 +74,9 @@ jobs:
                     PRODUCT_MODULE_NAME="$FRAMEWORK_NAME" \
                     PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
                     BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+                    CODE_SIGNING_ALLOWED=NO \
+                    CODE_SIGNING_REQUIRED=NO \
+                    LD_DYLIB_INSTALL_NAME="@rpath/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}" \
                     SKIP_INSTALL=NO \
                     INSTALL_PATH="/Library/Frameworks" \
                     ONLY_ACTIVE_ARCH=NO \
@@ -85,6 +98,7 @@ jobs:
 
                   mkdir -p artifacts/framework
                   cp -R "$BUILT_FRAMEWORK" "artifacts/framework/${FRAMEWORK_NAME}.framework"
+                  ldid -S "artifacts/framework/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
 
             - name: Validate framework
               shell: bash
@@ -95,14 +109,20 @@ jobs:
                   test -f "$FRAMEWORK/$FRAMEWORK_NAME"
                   test -d "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule"
 
+                  test "$(plutil -extract CFBundleExecutable raw "$FRAMEWORK/Info.plist")" = "$FRAMEWORK_NAME"
+                  test "$(plutil -extract CFBundleIdentifier raw "$FRAMEWORK/Info.plist")" = "$BUNDLE_ID"
+
                   INSTALL_NAME="$(otool -D "$FRAMEWORK/$FRAMEWORK_NAME" | tail -1)"
                   echo "$INSTALL_NAME"
-                  echo "$INSTALL_NAME" | grep -F "${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
+                  test "$INSTALL_NAME" = "@rpath/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
 
                   LIPO_INFO="$(lipo -info "$FRAMEWORK/$FRAMEWORK_NAME")"
                   echo "$LIPO_INFO"
                   echo "$LIPO_INFO" | grep -F "arm64"
                   echo "$LIPO_INFO" | grep -F "arm64e"
+
+                  mkdir -p artifacts/sideload
+                  ditto -c -k --keepParent "$FRAMEWORK" "artifacts/sideload/${FRAMEWORK_NAME}.framework.zip"
 
             - name: Package DEBs
               shell: bash
@@ -119,22 +139,24 @@ jobs:
                     local framework_dest="$package_root$install_root/Library/Frameworks/${FRAMEWORK_NAME}.framework"
                     local deb="packages/${PACKAGE_ID}_${VERSION}_${architecture}.deb"
                     local contents="packages/${scheme}-contents.txt"
+                    local extract_root="build/extract-$scheme"
+                    local extracted_framework="$extract_root$install_root/Library/Frameworks/${FRAMEWORK_NAME}.framework"
 
                     rm -rf "$package_root"
                     mkdir -p "$(dirname "$framework_dest")" "$package_root/DEBIAN"
                     cp -R "artifacts/framework/${FRAMEWORK_NAME}.framework" "$framework_dest"
 
-                    cat > "$package_root/DEBIAN/control" <<EOF
-                  Package: $PACKAGE_ID
-                  Name: $PACKAGE_NAME
-                  Version: $VERSION
-                  Architecture: $architecture
-                  Description: Plugin and runtime library for using protobuf with Swift
-                  Maintainer: eevee
-                  Author: eevee
-                  Section: System
-                  Tag: role::developer
-                  EOF
+                    {
+                      printf 'Package: %s\n' "$PACKAGE_ID"
+                      printf 'Name: %s\n' "$PACKAGE_NAME"
+                      printf 'Version: %s\n' "$VERSION"
+                      printf 'Architecture: %s\n' "$architecture"
+                      printf 'Description: Plugin and runtime library for using protobuf with Swift\n'
+                      printf 'Maintainer: eevee\n'
+                      printf 'Author: eevee\n'
+                      printf 'Section: System\n'
+                      printf 'Tag: role::developer\n'
+                    } > "$package_root/DEBIAN/control"
 
                     find "$package_root" -type d -exec chmod 755 {} \;
                     find "$package_root" -type f -exec chmod 644 {} \;
@@ -143,6 +165,13 @@ jobs:
                     dpkg-deb -Zxz -b "$package_root" "$deb"
                     dpkg-deb -c "$deb" | tee "$contents"
                     grep -F "${FRAMEWORK_NAME}.framework" "$contents"
+
+                    rm -rf "$extract_root"
+                    mkdir -p "$extract_root"
+                    dpkg-deb -x "$deb" "$extract_root"
+                    test -f "$extracted_framework/$FRAMEWORK_NAME"
+                    test -d "$extracted_framework/Modules/${FRAMEWORK_NAME}.swiftmodule"
+                    test "$(otool -D "$extracted_framework/$FRAMEWORK_NAME" | tail -1)" = "@rpath/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
                   }
 
                   package_framework rootful iphoneos-arm ""
@@ -156,6 +185,13 @@ jobs:
                   path: artifacts/framework/${{ env.FRAMEWORK_NAME }}.framework
                   if-no-files-found: error
 
+            - name: Upload sideload framework zip
+              uses: actions/upload-artifact@v4
+              with:
+                  name: sideload-framework
+                  path: artifacts/sideload/${{ env.FRAMEWORK_NAME }}.framework.zip
+                  if-no-files-found: error
+
             - name: Upload DEBs
               uses: actions/upload-artifact@v4
               with:
@@ -165,7 +201,7 @@ jobs:
 
     release:
         needs: build
-        runs-on: macos-14
+        runs-on: macos-15
 
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
@@ -187,9 +223,7 @@ jobs:
 
                   mkdir -p packages frameworks
                   cp all-artifacts/packages/*.deb packages/
-                  ditto -c -k --keepParent \
-                    "all-artifacts/framework/${FRAMEWORK_NAME}.framework" \
-                    "frameworks/${FRAMEWORK_NAME}.framework.zip"
+                  cp all-artifacts/sideload-framework/*.zip frameworks/
 
             - name: Generate Checksums
               shell: bash
@@ -260,4 +294,5 @@ jobs:
                   name: |
                       packages
                       framework
+                      sideload-framework
                   failOnError: false
