@@ -35,13 +35,13 @@ import Foundation
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate nonisolated struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIVersionCheck {
   struct _2: ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
 /// The full set of known editions.
-public nonisolated enum Google_Protobuf_Edition: Int, Enum, Swift.CaseIterable {
+public enum Google_Protobuf_Edition: Int, Enum, Swift.CaseIterable {
 
   /// A placeholder for an unknown edition value.
   case unknown = 0
@@ -91,7 +91,7 @@ public nonisolated enum Google_Protobuf_Edition: Int, Enum, Swift.CaseIterable {
 /// it (ex: local symbols cannot be imported).  Visibility modifiers can only set
 /// on `message` and `enum` as they are the only types available to be referenced
 /// from other files.
-public nonisolated enum Google_Protobuf_SymbolVisibility: Int, Enum, Swift.CaseIterable {
+public enum Google_Protobuf_SymbolVisibility: Int, Enum, Swift.CaseIterable {
   case visibilityUnset = 0
   case visibilityLocal = 1
   case visibilityExport = 2
@@ -104,7 +104,7 @@ public nonisolated enum Google_Protobuf_SymbolVisibility: Int, Enum, Swift.CaseI
 
 /// The protocol compiler can output a FileDescriptorSet containing the .proto
 /// files it parses.
-public nonisolated struct Google_Protobuf_FileDescriptorSet: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_FileDescriptorSet: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -119,7 +119,7 @@ public nonisolated struct Google_Protobuf_FileDescriptorSet: ExtensibleMessage, 
 }
 
 /// Describes a complete .proto file.
-public nonisolated struct Google_Protobuf_FileDescriptorProto: Sendable {
+public struct Google_Protobuf_FileDescriptorProto: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -231,7 +231,7 @@ public nonisolated struct Google_Protobuf_FileDescriptorProto: Sendable {
 }
 
 /// Describes a message type.
-public nonisolated struct Google_Protobuf_DescriptorProto: @unchecked Sendable {
+public struct Google_Protobuf_DescriptorProto: @unchecked Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -308,7 +308,7 @@ public nonisolated struct Google_Protobuf_DescriptorProto: @unchecked Sendable {
 
   public var unknownFields = UnknownStorage()
 
-  public nonisolated struct ExtensionRange: Sendable {
+  public struct ExtensionRange: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -354,7 +354,7 @@ public nonisolated struct Google_Protobuf_DescriptorProto: @unchecked Sendable {
   /// Range of reserved tag numbers. Reserved tag numbers may not be used by
   /// fields or extension ranges in the same message. Reserved ranges may
   /// not overlap.
-  public nonisolated struct ReservedRange: Sendable {
+  public struct ReservedRange: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -392,7 +392,7 @@ public nonisolated struct Google_Protobuf_DescriptorProto: @unchecked Sendable {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public nonisolated struct Google_Protobuf_ExtensionRangeOptions: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_ExtensionRangeOptions: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -430,7 +430,7 @@ public nonisolated struct Google_Protobuf_ExtensionRangeOptions: ExtensibleMessa
   public var unknownFields = UnknownStorage()
 
   /// The verification state of the extension range.
-  public nonisolated enum VerificationState: Int, Enum, Swift.CaseIterable {
+  public enum VerificationState: Int, Enum, Swift.CaseIterable {
 
     /// All the extensions of the range must be declared.
     case declaration = 0
@@ -442,7 +442,7 @@ public nonisolated struct Google_Protobuf_ExtensionRangeOptions: ExtensibleMessa
 
   }
 
-  public nonisolated struct Declaration: Sendable {
+  public struct Declaration: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -522,7 +522,7 @@ public nonisolated struct Google_Protobuf_ExtensionRangeOptions: ExtensibleMessa
 }
 
 /// Describes a field within a message.
-public nonisolated struct Google_Protobuf_FieldDescriptorProto: Sendable {
+public struct Google_Protobuf_FieldDescriptorProto: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -668,7 +668,7 @@ public nonisolated struct Google_Protobuf_FieldDescriptorProto: Sendable {
 
   public var unknownFields = UnknownStorage()
 
-  public nonisolated enum TypeEnum: Int, Enum, Swift.CaseIterable {
+  public enum TypeEnum: Int, Enum, Swift.CaseIterable {
 
     /// 0 is reserved for errors.
     /// Order is weird for historical reasons.
@@ -717,7 +717,7 @@ public nonisolated struct Google_Protobuf_FieldDescriptorProto: Sendable {
 
   }
 
-  public nonisolated enum Label: Int, Enum, Swift.CaseIterable {
+  public enum Label: Int, Enum, Swift.CaseIterable {
 
     /// 0 is reserved for errors
     case `optional` = 1
@@ -750,7 +750,7 @@ public nonisolated struct Google_Protobuf_FieldDescriptorProto: Sendable {
 }
 
 /// Describes a oneof.
-public nonisolated struct Google_Protobuf_OneofDescriptorProto: Sendable {
+public struct Google_Protobuf_OneofDescriptorProto: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -782,7 +782,7 @@ public nonisolated struct Google_Protobuf_OneofDescriptorProto: Sendable {
 }
 
 /// Describes an enum type.
-public nonisolated struct Google_Protobuf_EnumDescriptorProto: @unchecked Sendable {
+public struct Google_Protobuf_EnumDescriptorProto: @unchecked Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -843,7 +843,7 @@ public nonisolated struct Google_Protobuf_EnumDescriptorProto: @unchecked Sendab
   /// Note that this is distinct from DescriptorProto.ReservedRange in that it
   /// is inclusive such that it can appropriately represent the entire int32
   /// domain.
-  public nonisolated struct EnumReservedRange: Sendable {
+  public struct EnumReservedRange: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -882,7 +882,7 @@ public nonisolated struct Google_Protobuf_EnumDescriptorProto: @unchecked Sendab
 }
 
 /// Describes a value within an enum.
-public nonisolated struct Google_Protobuf_EnumValueDescriptorProto: Sendable {
+public struct Google_Protobuf_EnumValueDescriptorProto: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -924,7 +924,7 @@ public nonisolated struct Google_Protobuf_EnumValueDescriptorProto: Sendable {
 }
 
 /// Describes a service.
-public nonisolated struct Google_Protobuf_ServiceDescriptorProto: Sendable {
+public struct Google_Protobuf_ServiceDescriptorProto: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -958,7 +958,7 @@ public nonisolated struct Google_Protobuf_ServiceDescriptorProto: Sendable {
 }
 
 /// Describes a method of a service.
-public nonisolated struct Google_Protobuf_MethodDescriptorProto: @unchecked Sendable {
+public struct Google_Protobuf_MethodDescriptorProto: @unchecked Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1028,7 +1028,7 @@ public nonisolated struct Google_Protobuf_MethodDescriptorProto: @unchecked Send
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public nonisolated struct Google_Protobuf_FileOptions: ExtensibleMessage, @unchecked Sendable {
+public struct Google_Protobuf_FileOptions: ExtensibleMessage, @unchecked Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1294,7 +1294,7 @@ public nonisolated struct Google_Protobuf_FileOptions: ExtensibleMessage, @unche
   public var unknownFields = UnknownStorage()
 
   /// Generated classes can be optimized for speed or code size.
-  public nonisolated enum OptimizeMode: Int, Enum, Swift.CaseIterable {
+  public enum OptimizeMode: Int, Enum, Swift.CaseIterable {
 
     /// Generate complete code for parsing, serialization,
     case speed = 1
@@ -1317,7 +1317,7 @@ public nonisolated struct Google_Protobuf_FileOptions: ExtensibleMessage, @unche
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public nonisolated struct Google_Protobuf_MessageOptions: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_MessageOptions: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1454,7 +1454,7 @@ public nonisolated struct Google_Protobuf_MessageOptions: ExtensibleMessage, Sen
   fileprivate var _features: Google_Protobuf_FeatureSet? = nil
 }
 
-public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unchecked Sendable {
+public struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unchecked Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1640,7 +1640,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
 
   public var unknownFields = UnknownStorage()
 
-  public nonisolated enum CType: Int, Enum, Swift.CaseIterable {
+  public enum CType: Int, Enum, Swift.CaseIterable {
 
     /// Default mode.
     case string = 0
@@ -1660,7 +1660,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
 
   }
 
-  public nonisolated enum JSType: Int, Enum, Swift.CaseIterable {
+  public enum JSType: Int, Enum, Swift.CaseIterable {
 
     /// Use the default type.
     case jsNormal = 0
@@ -1678,7 +1678,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
   }
 
   /// If set to RETENTION_SOURCE, the option will be omitted from the binary.
-  public nonisolated enum OptionRetention: Int, Enum, Swift.CaseIterable {
+  public enum OptionRetention: Int, Enum, Swift.CaseIterable {
     case retentionUnknown = 0
     case retentionRuntime = 1
     case retentionSource = 2
@@ -1692,7 +1692,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
   /// This indicates the types of entities that the field may apply to when used
   /// as an option. If it is unset, then the field may be freely used as an
   /// option on any kind of entity.
-  public nonisolated enum OptionTargetType: Int, Enum, Swift.CaseIterable {
+  public enum OptionTargetType: Int, Enum, Swift.CaseIterable {
     case targetTypeUnknown = 0
     case targetTypeFile = 1
     case targetTypeExtensionRange = 2
@@ -1710,7 +1710,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
 
   }
 
-  public nonisolated struct EditionDefault: Sendable {
+  public struct EditionDefault: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1743,7 +1743,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
   }
 
   /// Information about the support window of a feature.
-  public nonisolated struct FeatureSupport: Sendable {
+  public struct FeatureSupport: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1822,7 +1822,7 @@ public nonisolated struct Google_Protobuf_FieldOptions: ExtensibleMessage, @unch
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public nonisolated struct Google_Protobuf_OneofOptions: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_OneofOptions: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1851,7 +1851,7 @@ public nonisolated struct Google_Protobuf_OneofOptions: ExtensibleMessage, Senda
   fileprivate var _features: Google_Protobuf_FeatureSet? = nil
 }
 
-public nonisolated struct Google_Protobuf_EnumOptions: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_EnumOptions: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1924,7 +1924,7 @@ public nonisolated struct Google_Protobuf_EnumOptions: ExtensibleMessage, Sendab
   fileprivate var _features: Google_Protobuf_FeatureSet? = nil
 }
 
-public nonisolated struct Google_Protobuf_EnumValueOptions: ExtensibleMessage, @unchecked Sendable {
+public struct Google_Protobuf_EnumValueOptions: ExtensibleMessage, @unchecked Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -1991,7 +1991,7 @@ public nonisolated struct Google_Protobuf_EnumValueOptions: ExtensibleMessage, @
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-public nonisolated struct Google_Protobuf_ServiceOptions: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_ServiceOptions: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2034,7 +2034,7 @@ public nonisolated struct Google_Protobuf_ServiceOptions: ExtensibleMessage, Sen
   fileprivate var _deprecated: Bool? = nil
 }
 
-public nonisolated struct Google_Protobuf_MethodOptions: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_MethodOptions: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2082,7 +2082,7 @@ public nonisolated struct Google_Protobuf_MethodOptions: ExtensibleMessage, Send
   /// Is this method side-effect-free (or safe in HTTP parlance), or idempotent,
   /// or neither? HTTP based RPC implementation may choose GET verb for safe
   /// methods, and PUT verb for idempotent methods instead of the default POST.
-  public nonisolated enum IdempotencyLevel: Int, Enum, Swift.CaseIterable {
+  public enum IdempotencyLevel: Int, Enum, Swift.CaseIterable {
     case idempotencyUnknown = 0
 
     /// implies idempotent
@@ -2111,7 +2111,7 @@ public nonisolated struct Google_Protobuf_MethodOptions: ExtensibleMessage, Send
 /// options protos in descriptor objects (e.g. returned by Descriptor::options(),
 /// or produced by Descriptor::CopyTo()) will never have UninterpretedOptions
 /// in them.
-public nonisolated struct Google_Protobuf_UninterpretedOption: Sendable {
+public struct Google_Protobuf_UninterpretedOption: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2181,7 +2181,7 @@ public nonisolated struct Google_Protobuf_UninterpretedOption: Sendable {
   /// extension (denoted with parentheses in options specs in .proto files).
   /// E.g.,{ ["foo", false], ["bar.baz", true], ["moo", false] } represents
   /// "foo.(bar.baz).moo".
-  public nonisolated struct NamePart: Sendable {
+  public struct NamePart: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2228,7 +2228,7 @@ public nonisolated struct Google_Protobuf_UninterpretedOption: Sendable {
 /// readability, but leave us very open to this scenario.  A future feature will
 /// be designed and implemented to handle this, hopefully before we ever hit a
 /// conflict here.
-public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2316,7 +2316,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   public var unknownFields = UnknownStorage()
 
-  public nonisolated enum FieldPresence: Int, Enum, Swift.CaseIterable {
+  public enum FieldPresence: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case explicit = 1
     case implicit = 2
@@ -2328,7 +2328,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated enum EnumType: Int, Enum, Swift.CaseIterable {
+  public enum EnumType: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case `open` = 1
     case closed = 2
@@ -2339,7 +2339,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated enum RepeatedFieldEncoding: Int, Enum, Swift.CaseIterable {
+  public enum RepeatedFieldEncoding: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case packed = 1
     case expanded = 2
@@ -2350,7 +2350,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated enum Utf8Validation: Int, Enum, Swift.CaseIterable {
+  public enum Utf8Validation: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case verify = 2
     case none = 3
@@ -2361,7 +2361,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated enum MessageEncoding: Int, Enum, Swift.CaseIterable {
+  public enum MessageEncoding: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case lengthPrefixed = 1
     case delimited = 2
@@ -2372,7 +2372,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated enum JsonFormat: Int, Enum, Swift.CaseIterable {
+  public enum JsonFormat: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case allow = 1
     case legacyBestEffort = 2
@@ -2383,7 +2383,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated enum EnforceNamingStyle: Int, Enum, Swift.CaseIterable {
+  public enum EnforceNamingStyle: Int, Enum, Swift.CaseIterable {
     case unknown = 0
     case style2024 = 1
     case styleLegacy = 2
@@ -2395,14 +2395,14 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 
   }
 
-  public nonisolated struct VisibilityFeature: Sendable {
+  public struct VisibilityFeature: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
     public var unknownFields = UnknownStorage()
 
-    public nonisolated enum DefaultSymbolVisibility: Int, Enum, Swift.CaseIterable {
+    public enum DefaultSymbolVisibility: Int, Enum, Swift.CaseIterable {
       case unknown = 0
 
       /// Default pre-EDITION_2024, all UNSET visibility are export.
@@ -2428,14 +2428,14 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
     public init() {}
   }
 
-  public nonisolated struct ProtoLimitsFeature: Sendable {
+  public struct ProtoLimitsFeature: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
     public var unknownFields = UnknownStorage()
 
-    public nonisolated enum EnforceProtoLimits: Int, Enum, Swift.CaseIterable {
+    public enum EnforceProtoLimits: Int, Enum, Swift.CaseIterable {
       case protoLimitsUnknown = 0
 
       /// Default pre-EDITION_2026: there are no limit enforcement at the protoc
@@ -2475,7 +2475,7 @@ public nonisolated struct Google_Protobuf_FeatureSet: ExtensibleMessage, Sendabl
 /// messages are generated from FeatureSet extensions and can be used to seed
 /// feature resolution. The resolution with this object becomes a simple search
 /// for the closest matching edition, followed by proto merges.
-public nonisolated struct Google_Protobuf_FeatureSetDefaults: Sendable {
+public struct Google_Protobuf_FeatureSetDefaults: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2510,7 +2510,7 @@ public nonisolated struct Google_Protobuf_FeatureSetDefaults: Sendable {
   /// defaults. Not all editions may be contained here.  For a given edition,
   /// the defaults at the closest matching edition ordered at or before it should
   /// be used.  This field must be in strict ascending order by edition.
-  public nonisolated struct FeatureSetEditionDefault: @unchecked Sendable {
+  public struct FeatureSetEditionDefault: @unchecked Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2559,7 +2559,7 @@ public nonisolated struct Google_Protobuf_FeatureSetDefaults: Sendable {
 
 /// Encapsulates information about the original source file from which a
 /// FileDescriptorProto was generated.
-public nonisolated struct Google_Protobuf_SourceCodeInfo: ExtensibleMessage, Sendable {
+public struct Google_Protobuf_SourceCodeInfo: ExtensibleMessage, Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2611,7 +2611,7 @@ public nonisolated struct Google_Protobuf_SourceCodeInfo: ExtensibleMessage, Sen
 
   public var unknownFields = UnknownStorage()
 
-  public nonisolated struct Location: Sendable {
+  public struct Location: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2748,7 +2748,7 @@ public nonisolated struct Google_Protobuf_SourceCodeInfo: ExtensibleMessage, Sen
 /// Describes the relationship between generated code and its original source
 /// file. A GeneratedCodeInfo message is associated with only one generated
 /// source file, but may contain references to different source .proto files.
-public nonisolated struct Google_Protobuf_GeneratedCodeInfo: Sendable {
+public struct Google_Protobuf_GeneratedCodeInfo: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -2759,7 +2759,7 @@ public nonisolated struct Google_Protobuf_GeneratedCodeInfo: Sendable {
 
   public var unknownFields = UnknownStorage()
 
-  public nonisolated struct Annotation: Sendable {
+  public struct Annotation: Sendable {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2814,7 +2814,7 @@ public nonisolated struct Google_Protobuf_GeneratedCodeInfo: Sendable {
 
     /// Represents the identified object's effect on the element in the original
     /// .proto file.
-    public nonisolated enum Semantic: Int, Enum, Swift.CaseIterable {
+    public enum Semantic: Int, Enum, Swift.CaseIterable {
 
       /// There is no effect or the effect is indescribable.
       case none = 0
@@ -2844,7 +2844,7 @@ public nonisolated struct Google_Protobuf_GeneratedCodeInfo: Sendable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate nonisolated let _protobuf_package = "google.protobuf"
+fileprivate let _protobuf_package = "google.protobuf"
 
 nonisolated extension Google_Protobuf_Edition: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0EDITION_UNKNOWN\0\u{1}EDITION_1_TEST_ONLY\0\u{1}EDITION_2_TEST_ONLY\0\u{2}B\u{e}EDITION_LEGACY\0\u{2}b\u{1}EDITION_PROTO2\0\u{1}EDITION_PROTO3\0\u{1}EDITION_2023\0\u{1}EDITION_2024\0\u{1}EDITION_2026\0\u{2}eL\u{2}EDITION_UNSTABLE\0\u{2}N~\u{15}EDITION_99997_TEST_ONLY\0\u{1}EDITION_99998_TEST_ONLY\0\u{1}EDITION_99999_TEST_ONLY\0\u{2}`eg\u{7f}\u{7f}\u{1}EDITION_MAX\0")
@@ -3020,11 +3020,15 @@ nonisolated extension Google_Protobuf_DescriptorProto: Message, _MessageImplemen
     var _reservedName: [String] = []
     var _visibility: Google_Protobuf_SymbolVisibility? = nil
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 
@@ -3516,11 +3520,15 @@ nonisolated extension Google_Protobuf_EnumDescriptorProto: Message, _MessageImpl
     var _reservedName: [String] = []
     var _visibility: Google_Protobuf_SymbolVisibility? = nil
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 
@@ -3767,11 +3775,15 @@ nonisolated extension Google_Protobuf_MethodDescriptorProto: Message, _MessageIm
     var _clientStreaming: Bool? = nil
     var _serverStreaming: Bool? = nil
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 
@@ -3894,11 +3906,15 @@ nonisolated extension Google_Protobuf_FileOptions: Message, _MessageImplementati
     var _features: Google_Protobuf_FeatureSet? = nil
     var _uninterpretedOption: [Google_Protobuf_UninterpretedOption] = []
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 
@@ -4191,11 +4207,15 @@ nonisolated extension Google_Protobuf_FieldOptions: Message, _MessageImplementat
     var _featureSupport: Google_Protobuf_FieldOptions.FeatureSupport? = nil
     var _uninterpretedOption: [Google_Protobuf_UninterpretedOption] = []
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 
@@ -4583,11 +4603,15 @@ nonisolated extension Google_Protobuf_EnumValueOptions: Message, _MessageImpleme
     var _featureSupport: Google_Protobuf_FieldOptions.FeatureSupport? = nil
     var _uninterpretedOption: [Google_Protobuf_UninterpretedOption] = []
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 
@@ -5134,11 +5158,15 @@ nonisolated extension Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefaul
     var _overridableFeatures: Google_Protobuf_FeatureSet? = nil
     var _fixedFeatures: Google_Protobuf_FeatureSet? = nil
 
+    #if swift(>=5.10)
       // This property is used as the initial default value for new instances of the type.
       // The type itself is protecting the reference to its storage via CoW semantics.
       // This will force a copy to be made of this reference when the first mutation occurs;
       // hence, it is safe to mark this as `nonisolated(unsafe)`.
       static nonisolated(unsafe) let defaultInstance = _StorageClass()
+    #else
+      static let defaultInstance = _StorageClass()
+    #endif
 
     private init() {}
 

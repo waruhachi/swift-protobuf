@@ -45,13 +45,13 @@
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate nonisolated struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIVersionCheck {
   struct _2: ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
 
 /// The syntax in which a protocol buffer element is defined.
-public nonisolated enum Google_Protobuf_Syntax: Enum, Swift.CaseIterable {
+public enum Google_Protobuf_Syntax: Enum, Swift.CaseIterable {
   public typealias RawValue = Int
 
   /// Syntax `proto2`.
@@ -101,7 +101,7 @@ public nonisolated enum Google_Protobuf_Syntax: Enum, Swift.CaseIterable {
 /// discouraged. This message does not reliability preserve all information
 /// necessary to model the schema and preserve semantics. Instead make use of
 /// FileDescriptorSet which preserves the necessary information.
-public nonisolated struct Google_Protobuf_Type: Sendable {
+public struct Google_Protobuf_Type: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -147,7 +147,7 @@ public nonisolated struct Google_Protobuf_Type: Sendable {
 /// strongly discouraged. This message does not reliability preserve all
 /// information necessary to model the schema and preserve semantics. Instead
 /// make use of FileDescriptorSet which preserves the necessary information.
-public nonisolated struct Google_Protobuf_Field: Sendable {
+public struct Google_Protobuf_Field: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -187,7 +187,7 @@ public nonisolated struct Google_Protobuf_Field: Sendable {
   public var unknownFields = UnknownStorage()
 
   /// Basic field types.
-  public nonisolated enum Kind: Enum, Swift.CaseIterable {
+  public enum Kind: Enum, Swift.CaseIterable {
     public typealias RawValue = Int
 
     /// Field type unknown.
@@ -328,7 +328,7 @@ public nonisolated struct Google_Protobuf_Field: Sendable {
   }
 
   /// Whether a field is optional, required, or repeated.
-  public nonisolated enum Cardinality: Enum, Swift.CaseIterable {
+  public enum Cardinality: Enum, Swift.CaseIterable {
     public typealias RawValue = Int
 
     /// For fields with unknown cardinality.
@@ -387,7 +387,7 @@ public nonisolated struct Google_Protobuf_Field: Sendable {
 /// strongly discouraged. This message does not reliability preserve all
 /// information necessary to model the schema and preserve semantics. Instead
 /// make use of FileDescriptorSet which preserves the necessary information.
-public nonisolated struct Google_Protobuf_Enum: Sendable {
+public struct Google_Protobuf_Enum: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -430,7 +430,7 @@ public nonisolated struct Google_Protobuf_Enum: Sendable {
 /// strongly discouraged. This message does not reliability preserve all
 /// information necessary to model the schema and preserve semantics. Instead
 /// make use of FileDescriptorSet which preserves the necessary information.
-public nonisolated struct Google_Protobuf_EnumValue: Sendable {
+public struct Google_Protobuf_EnumValue: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -455,7 +455,7 @@ public nonisolated struct Google_Protobuf_EnumValue: Sendable {
 /// New usages of this message as an alternative to FileOptions, MessageOptions,
 /// FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions
 /// are strongly discouraged.
-public nonisolated struct Google_Protobuf_Option: Sendable {
+public struct Google_Protobuf_Option: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -488,7 +488,7 @@ public nonisolated struct Google_Protobuf_Option: Sendable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate nonisolated let _protobuf_package = "google.protobuf"
+fileprivate let _protobuf_package = "google.protobuf"
 
 nonisolated extension Google_Protobuf_Syntax: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0SYNTAX_PROTO2\0\u{1}SYNTAX_PROTO3\0\u{1}SYNTAX_EDITIONS\0")

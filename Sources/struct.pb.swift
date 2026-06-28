@@ -45,7 +45,7 @@
 // incompatible with the version of SwiftProtobuf to which you are linking.
 // Please ensure that you are building against the same version of the API
 // that was used to generate this file.
-fileprivate nonisolated struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIVersionCheck {
+fileprivate struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIVersionCheck {
   struct _2: ProtobufAPIVersion_2 {}
   typealias Version = _2
 }
@@ -59,7 +59,7 @@ fileprivate nonisolated struct _GeneratedWithProtocGenSwiftVersion: ProtobufAPIV
 /// invalid. Most ProtoJSON serializers will emit a `Value` with a `null_value`
 /// set as a JSON `null` regardless of the integer value, and so will round trip
 /// to a `0` value.
-public nonisolated enum Google_Protobuf_NullValue: Enum, Swift.CaseIterable {
+public enum Google_Protobuf_NullValue: Enum, Swift.CaseIterable {
   public typealias RawValue = Int
 
   /// Null value.
@@ -104,7 +104,7 @@ public nonisolated enum Google_Protobuf_NullValue: Enum, Swift.CaseIterable {
 ///
 /// If you do not intend to parse arbitrary JSON into your message, a custom
 /// typed message should be preferred instead of using this type.
-public nonisolated struct Google_Protobuf_Struct: Sendable {
+public struct Google_Protobuf_Struct: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -123,7 +123,7 @@ public nonisolated struct Google_Protobuf_Struct: Sendable {
 /// null, a number, a string, a boolean, a recursive struct value, or a
 /// list of values. A producer of value is expected to set one of these
 /// variants. Absence of any variant is an invalid state.
-public nonisolated struct Google_Protobuf_Value: Sendable {
+public struct Google_Protobuf_Value: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -191,7 +191,7 @@ public nonisolated struct Google_Protobuf_Value: Sendable {
   public var unknownFields = UnknownStorage()
 
   /// The kind of value.
-  public nonisolated enum OneOf_Kind: Equatable, Sendable {
+  public enum OneOf_Kind: Equatable, Sendable {
     /// Represents a JSON `null`.
     case nullValue(Google_Protobuf_NullValue)
     /// Represents a JSON number. Must not be `NaN`, `Infinity` or
@@ -214,7 +214,7 @@ public nonisolated struct Google_Protobuf_Value: Sendable {
 }
 
 /// Represents a JSON array.
-public nonisolated struct Google_Protobuf_ListValue: Sendable {
+public struct Google_Protobuf_ListValue: Sendable {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -229,7 +229,7 @@ public nonisolated struct Google_Protobuf_ListValue: Sendable {
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
-fileprivate nonisolated let _protobuf_package = "google.protobuf"
+fileprivate let _protobuf_package = "google.protobuf"
 
 nonisolated extension Google_Protobuf_NullValue: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0NULL_VALUE\0")
