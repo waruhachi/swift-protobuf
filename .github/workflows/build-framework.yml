@@ -1,159 +1,263 @@
 name: Build Framework
 
 on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-  workflow_dispatch:
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
+    workflow_dispatch:
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  build:
-    runs-on: macos-14
+    build:
+        runs-on: macos-14
 
-    env:
-      VERSION: 1.38.1
-
-    strategy:
-      matrix:
-        scheme: [rootful, rootless, roothide]
-        include:
-          - scheme: rootful
-            scheme_arg: ""
-          - scheme: rootless
-            scheme_arg: "THEOS_PACKAGE_SCHEME=rootless"
-          - scheme: roothide
-            scheme_arg: "THEOS_PACKAGE_SCHEME=roothide"
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: "latest"
-
-      - name: Setup Theos
-        uses: waruhachi/theos-action@v2.4.6
-        with:
-          theos-src: "waruhachi/theos"
-          theos-branch: "main"
-          sdks-src: "waruhachi/sdks"
-          sdks-branch: "main"
-
-      - name: Install Dependencies
-        run: |
-          brew install make dpkg ldid
-          echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
-
-      - name: Build SwiftProtobuf (${{ matrix.scheme }})
-        shell: bash
-        run: |
-          make clean || true
-          make package FINALPACKAGE=1 ${{ matrix.scheme_arg }}
-
-      - name: List packages
-        run: ls -la packages
-
-      - name: Upload DEB (${{ matrix.scheme }})
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.scheme }}-package
-          path: packages/*.deb
-          if-no-files-found: error
-
-  release:
-    needs: build
-    runs-on: macos-14
-
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    env:
-      VERSION: 1.38.1
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download all DEBs
-        uses: actions/download-artifact@v4
-        with:
-          path: all-packages
-
-      - name: Prepare DEBs
-        shell: bash
-        run: |
-          mkdir -p packages
-          cp all-packages/*-package/*.deb packages/
-
-      - name: Rename DEBs to remove build number and debug
-        shell: bash
-        run: |
-          shopt -s nullglob
-          for f in packages/*-*+debug_*.deb; do
-            base=$(basename "$f")
-            new=$(echo "$base" | sed -E 's/-[0-9]+\+debug/_/' | sed -E 's/__+/_/g')
-            mv "packages/$base" "packages/$new"
-          done
-
-      - name: Generate Checksums
-        shell: bash
-        run: |
-          : > release_body.md
-
-          for pkg in packages/*_iphoneos-arm.deb; do
-            if [ -f "$pkg" ]; then
-              echo "### Rootful (iphoneos-arm)" >> release_body.md
-              echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
-              echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
-              echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
-              echo "" >> release_body.md
-            fi
-          done
-
-          for pkg in packages/*_iphoneos-arm64.deb; do
-            if [ -f "$pkg" ]; then
-              echo "### Rootless (iphoneos-arm64)" >> release_body.md
-              echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
-              echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
-              echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
-              echo "" >> release_body.md
-            fi
-          done
-
-          for pkg in packages/*_iphoneos-arm64e.deb; do
-            if [ -f "$pkg" ]; then
-              echo "### RootHide (iphoneos-arm64e)" >> release_body.md
-              echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
-              echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
-              echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
-              echo "" >> release_body.md
-            fi
-          done
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ env.VERSION }}
-          name: SwiftProtobuf ${{ env.VERSION }}
-          body_path: release_body.md
-          files: packages/*.deb
-          fail_on_unmatched_files: true
-          draft: false
-          prerelease: false
-          make_latest: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            VERSION: 1.38.1
+            FRAMEWORK_NAME: EeveeSwiftProtobuf
+            ORIGINAL_NAME: SwiftProtobuf
+            PACKAGE_ID: org.swift.protobuf.swiftprotobuf
+            PACKAGE_NAME: SwiftProtobuf
+            BUNDLE_ID: org.swift.protobuf.swiftprotobuf
 
-      - name: Delete build artifacts
-        uses: geekyeggo/delete-artifact@v5
-        with:
-          name: |
-            rootful-package
-            rootless-package
-            roothide-package
-          failOnError: false
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Xcode
+              uses: maxim-lobanov/setup-xcode@v1
+              with:
+                  xcode-version: "latest"
+
+            - name: Install Dependencies
+              run: brew install dpkg
+
+            - name: Download SwiftProtobuf source
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  mkdir -p build
+                  curl -fsSL \
+                    "https://github.com/apple/swift-protobuf/archive/refs/tags/${VERSION}.tar.gz" \
+                    -o build/swiftprotobuf.tar.gz
+                  tar xzf build/swiftprotobuf.tar.gz -C build
+
+            - name: Build EeveeSwiftProtobuf.framework
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  SRC_DIR="$PWD/build/swift-protobuf-${VERSION}"
+                  DERIVED_DIR="$PWD/build/derived"
+
+                  pushd "$SRC_DIR" >/dev/null
+                  xcodebuild \
+                    -scheme "$ORIGINAL_NAME" \
+                    -destination "generic/platform=iOS" \
+                    -configuration Release \
+                    -derivedDataPath "$DERIVED_DIR" \
+                    -clonedSourcePackagesDirPath "$PWD/../pkgs" \
+                    PRODUCT_NAME="$FRAMEWORK_NAME" \
+                    PRODUCT_MODULE_NAME="$FRAMEWORK_NAME" \
+                    PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
+                    BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+                    SKIP_INSTALL=NO \
+                    INSTALL_PATH="/Library/Frameworks" \
+                    ONLY_ACTIVE_ARCH=NO \
+                    ARCHS="arm64 arm64e" \
+                    -quiet \
+                    2>&1 | awk '!/^(note:|warning:.*deprecated|$)/'
+                  popd >/dev/null
+
+                  BUILT_FRAMEWORK="$(find "$DERIVED_DIR" \
+                    -name "${FRAMEWORK_NAME}.framework" \
+                    -path "*/Release-iphoneos/*" \
+                    | head -1)"
+
+                  if [ -z "$BUILT_FRAMEWORK" ]; then
+                    echo "ERROR: ${FRAMEWORK_NAME}.framework not found in derived data." >&2
+                    find "$DERIVED_DIR" -name "*.framework" >&2
+                    exit 1
+                  fi
+
+                  mkdir -p artifacts/framework
+                  cp -R "$BUILT_FRAMEWORK" "artifacts/framework/${FRAMEWORK_NAME}.framework"
+
+            - name: Validate framework
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  FRAMEWORK="artifacts/framework/${FRAMEWORK_NAME}.framework"
+                  test -f "$FRAMEWORK/$FRAMEWORK_NAME"
+                  test -d "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule"
+
+                  INSTALL_NAME="$(otool -D "$FRAMEWORK/$FRAMEWORK_NAME" | tail -1)"
+                  echo "$INSTALL_NAME"
+                  echo "$INSTALL_NAME" | grep -F "${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
+
+                  LIPO_INFO="$(lipo -info "$FRAMEWORK/$FRAMEWORK_NAME")"
+                  echo "$LIPO_INFO"
+                  echo "$LIPO_INFO" | grep -F "arm64"
+                  echo "$LIPO_INFO" | grep -F "arm64e"
+
+            - name: Package DEBs
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  mkdir -p packages
+
+                  package_framework() {
+                    local scheme="$1"
+                    local architecture="$2"
+                    local install_root="$3"
+                    local package_root="build/package-$scheme"
+                    local framework_dest="$package_root$install_root/Library/Frameworks/${FRAMEWORK_NAME}.framework"
+                    local deb="packages/${PACKAGE_ID}_${VERSION}_${architecture}.deb"
+                    local contents="packages/${scheme}-contents.txt"
+
+                    rm -rf "$package_root"
+                    mkdir -p "$(dirname "$framework_dest")" "$package_root/DEBIAN"
+                    cp -R "artifacts/framework/${FRAMEWORK_NAME}.framework" "$framework_dest"
+
+                    cat > "$package_root/DEBIAN/control" <<EOF
+                  Package: $PACKAGE_ID
+                  Name: $PACKAGE_NAME
+                  Version: $VERSION
+                  Architecture: $architecture
+                  Description: Plugin and runtime library for using protobuf with Swift
+                  Maintainer: eevee
+                  Author: eevee
+                  Section: System
+                  Tag: role::developer
+                  EOF
+
+                    find "$package_root" -type d -exec chmod 755 {} \;
+                    find "$package_root" -type f -exec chmod 644 {} \;
+                    chmod 755 "$framework_dest/$FRAMEWORK_NAME"
+
+                    dpkg-deb -Zxz -b "$package_root" "$deb"
+                    dpkg-deb -c "$deb" | tee "$contents"
+                    grep -F "${FRAMEWORK_NAME}.framework" "$contents"
+                  }
+
+                  package_framework rootful iphoneos-arm ""
+                  package_framework rootless iphoneos-arm64 /var/jb
+                  package_framework roothide iphoneos-arm64e /var/jb
+
+            - name: Upload framework
+              uses: actions/upload-artifact@v4
+              with:
+                  name: framework
+                  path: artifacts/framework/${{ env.FRAMEWORK_NAME }}.framework
+                  if-no-files-found: error
+
+            - name: Upload DEBs
+              uses: actions/upload-artifact@v4
+              with:
+                  name: packages
+                  path: packages/*.deb
+                  if-no-files-found: error
+
+    release:
+        needs: build
+        runs-on: macos-14
+
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+        env:
+            VERSION: 1.38.1
+            FRAMEWORK_NAME: EeveeSwiftProtobuf
+            PACKAGE_NAME: SwiftProtobuf
+
+        steps:
+            - name: Download all artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  path: all-artifacts
+
+            - name: Prepare release files
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  mkdir -p packages frameworks
+                  cp all-artifacts/packages/*.deb packages/
+                  ditto -c -k --keepParent \
+                    "all-artifacts/framework/${FRAMEWORK_NAME}.framework" \
+                    "frameworks/${FRAMEWORK_NAME}.framework.zip"
+
+            - name: Generate Checksums
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  : > release_body.md
+
+                  for pkg in packages/*_iphoneos-arm.deb; do
+                    if [ -f "$pkg" ]; then
+                      echo "### Rootful (iphoneos-arm)" >> release_body.md
+                      echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
+                      echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
+                      echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
+                      echo "" >> release_body.md
+                    fi
+                  done
+
+                  for pkg in packages/*_iphoneos-arm64.deb; do
+                    if [ -f "$pkg" ]; then
+                      echo "### Rootless (iphoneos-arm64)" >> release_body.md
+                      echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
+                      echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
+                      echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
+                      echo "" >> release_body.md
+                    fi
+                  done
+
+                  for pkg in packages/*_iphoneos-arm64e.deb; do
+                    if [ -f "$pkg" ]; then
+                      echo "### RootHide (iphoneos-arm64e)" >> release_body.md
+                      echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
+                      echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
+                      echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
+                      echo "" >> release_body.md
+                    fi
+                  done
+
+                  for framework in frameworks/*.zip; do
+                    if [ -f "$framework" ]; then
+                      echo "### $(basename "$framework")" >> release_body.md
+                      echo "* MD5: $(md5 -q "$framework")" >> release_body.md
+                      echo "* SHA1: $(shasum -a 1 "$framework" | awk '{ print $1 }')" >> release_body.md
+                      echo "* SHA256: $(shasum -a 256 "$framework" | awk '{ print $1 }')" >> release_body.md
+                      echo "" >> release_body.md
+                    fi
+                  done
+
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ env.VERSION }}
+                  name: ${{ env.PACKAGE_NAME }} ${{ env.VERSION }}
+                  body_path: release_body.md
+                  files: |
+                      packages/*.deb
+                      frameworks/*.zip
+                  fail_on_unmatched_files: true
+                  draft: false
+                  prerelease: false
+                  make_latest: true
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Delete build artifacts
+              uses: geekyeggo/delete-artifact@v5
+              with:
+                  name: |
+                      packages
+                      framework
+                  failOnError: false
