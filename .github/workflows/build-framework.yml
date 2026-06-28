@@ -160,6 +160,24 @@ jobs:
                   cp -R "$BUILT_FRAMEWORK" "artifacts/framework/${FRAMEWORK_NAME}.framework"
                   FRAMEWORK="artifacts/framework/${FRAMEWORK_NAME}.framework"
 
+                  if [ ! -d "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule" ]; then
+                    MODULE_DIR="$(find "$DERIVED_DIR" \
+                      -type d -name "${FRAMEWORK_NAME}.swiftmodule" \
+                      | head -1)"
+
+                    if [ -z "$MODULE_DIR" ]; then
+                      echo "ERROR: ${FRAMEWORK_NAME}.swiftmodule not found in framework or derived data." >&2
+                      echo "Framework layout:" >&2
+                      find "$FRAMEWORK" -maxdepth 4 -print >&2
+                      echo "Derived swiftmodules:" >&2
+                      find "$DERIVED_DIR" -name "*.swiftmodule" -print >&2 || true
+                      exit 1
+                    fi
+
+                    mkdir -p "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule"
+                    cp -R "$MODULE_DIR/"* "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule/"
+                  fi
+
                   /usr/libexec/PlistBuddy -c "Set :CFBundleExecutable ${FRAMEWORK_NAME}" "$FRAMEWORK/Info.plist" || \
                     /usr/libexec/PlistBuddy -c "Add :CFBundleExecutable string ${FRAMEWORK_NAME}" "$FRAMEWORK/Info.plist"
                   /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier ${BUNDLE_ID}" "$FRAMEWORK/Info.plist" || \
@@ -182,6 +200,9 @@ jobs:
                   set -euo pipefail
 
                   FRAMEWORK="artifacts/framework/${FRAMEWORK_NAME}.framework"
+                  echo "Framework layout:"
+                  find "$FRAMEWORK" -maxdepth 4 -print
+
                   test -f "$FRAMEWORK/$FRAMEWORK_NAME"
                   test -d "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule"
 
