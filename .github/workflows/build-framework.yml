@@ -158,7 +158,23 @@ jobs:
 
                   mkdir -p artifacts/framework
                   cp -R "$BUILT_FRAMEWORK" "artifacts/framework/${FRAMEWORK_NAME}.framework"
-                  ldid -S "artifacts/framework/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
+                  FRAMEWORK="artifacts/framework/${FRAMEWORK_NAME}.framework"
+
+                  /usr/libexec/PlistBuddy -c "Set :CFBundleExecutable ${FRAMEWORK_NAME}" "$FRAMEWORK/Info.plist" || \
+                    /usr/libexec/PlistBuddy -c "Add :CFBundleExecutable string ${FRAMEWORK_NAME}" "$FRAMEWORK/Info.plist"
+                  /usr/libexec/PlistBuddy -c "Set :CFBundleIdentifier ${BUNDLE_ID}" "$FRAMEWORK/Info.plist" || \
+                    /usr/libexec/PlistBuddy -c "Add :CFBundleIdentifier string ${BUNDLE_ID}" "$FRAMEWORK/Info.plist"
+                  /usr/libexec/PlistBuddy -c "Set :CFBundleName ${FRAMEWORK_NAME}" "$FRAMEWORK/Info.plist" || \
+                    /usr/libexec/PlistBuddy -c "Add :CFBundleName string ${FRAMEWORK_NAME}" "$FRAMEWORK/Info.plist"
+                  /usr/libexec/PlistBuddy -c "Set :CFBundlePackageType FMWK" "$FRAMEWORK/Info.plist" || \
+                    /usr/libexec/PlistBuddy -c "Add :CFBundlePackageType string FMWK" "$FRAMEWORK/Info.plist"
+                  /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${VERSION}" "$FRAMEWORK/Info.plist" || \
+                    /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string ${VERSION}" "$FRAMEWORK/Info.plist"
+                  /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${VERSION}" "$FRAMEWORK/Info.plist" || \
+                    /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string ${VERSION}" "$FRAMEWORK/Info.plist"
+
+                  install_name_tool -id "@rpath/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}" "$FRAMEWORK/$FRAMEWORK_NAME"
+                  ldid -S "$FRAMEWORK/$FRAMEWORK_NAME"
 
             - name: Validate framework
               shell: bash
@@ -169,8 +185,12 @@ jobs:
                   test -f "$FRAMEWORK/$FRAMEWORK_NAME"
                   test -d "$FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule"
 
-                  test "$(plutil -extract CFBundleExecutable raw "$FRAMEWORK/Info.plist")" = "$FRAMEWORK_NAME"
-                  test "$(plutil -extract CFBundleIdentifier raw "$FRAMEWORK/Info.plist")" = "$BUNDLE_ID"
+                  EXECUTABLE="$(plutil -extract CFBundleExecutable raw "$FRAMEWORK/Info.plist")"
+                  IDENTIFIER="$(plutil -extract CFBundleIdentifier raw "$FRAMEWORK/Info.plist")"
+                  echo "CFBundleExecutable=$EXECUTABLE"
+                  echo "CFBundleIdentifier=$IDENTIFIER"
+                  test "$EXECUTABLE" = "$FRAMEWORK_NAME"
+                  test "$IDENTIFIER" = "$BUNDLE_ID"
 
                   INSTALL_NAME="$(otool -D "$FRAMEWORK/$FRAMEWORK_NAME" | tail -1)"
                   echo "$INSTALL_NAME"
