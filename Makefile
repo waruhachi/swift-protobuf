@@ -8,6 +8,7 @@ ARCHS = arm64 arm64e
 rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
 
 SwiftProtobuf_FILES = $(call rwildcard, Sources, *.m *.swift)
+SwiftProtobuf_SWIFTFLAGS += -package-name SwiftProtobuf
 SwiftProtobuf_INSTALL_PATH = /Library/Frameworks
 
 include $(THEOS_MAKE_PATH)/framework.mk
