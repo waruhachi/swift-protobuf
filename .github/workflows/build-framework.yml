@@ -61,6 +61,7 @@ jobs:
                   # overrides alone can leave the output named SwiftProtobuf.
                   perl -0pi -e 's/"SwiftProtobuf"/"EeveeSwiftProtobuf"/g' "$SRC_DIR/Package.swift"
                   perl -0pi -e 's/name: "EeveeSwiftProtobuf",\n            exclude:/name: "EeveeSwiftProtobuf",\n            path: "Sources\/SwiftProtobuf",\n            exclude:/' "$SRC_DIR/Package.swift"
+                  perl -0pi -e 's/\.library\(\n            name: "EeveeSwiftProtobuf",\n            targets: \["EeveeSwiftProtobuf"\]/.library(\n            name: "EeveeSwiftProtobuf",\n            type: .dynamic,\n            targets: ["EeveeSwiftProtobuf"]/s' "$SRC_DIR/Package.swift"
 
             - name: Build EeveeSwiftProtobuf.framework
               shell: bash
