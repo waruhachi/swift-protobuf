@@ -62,6 +62,7 @@ jobs:
                   perl -0pi -e 's/"SwiftProtobuf"/"EeveeSwiftProtobuf"/g' "$SRC_DIR/Package.swift"
                   perl -0pi -e 's/name: "EeveeSwiftProtobuf",\n            exclude:/name: "EeveeSwiftProtobuf",\n            path: "Sources\/SwiftProtobuf",\n            exclude:/' "$SRC_DIR/Package.swift"
                   perl -0pi -e 's/\.library\(\n            name: "EeveeSwiftProtobuf",\n            targets: \["EeveeSwiftProtobuf"\]/.library(\n            name: "EeveeSwiftProtobuf",\n            type: .dynamic,\n            targets: ["EeveeSwiftProtobuf"]/s' "$SRC_DIR/Package.swift"
+                  grep -A4 -n 'name: "EeveeSwiftProtobuf"' "$SRC_DIR/Package.swift"
 
             - name: Build EeveeSwiftProtobuf.framework
               shell: bash
@@ -99,10 +100,60 @@ jobs:
                     | head -1)"
 
                   if [ -z "$BUILT_FRAMEWORK" ]; then
-                    echo "ERROR: ${FRAMEWORK_NAME}.framework not found in derived data." >&2
-                    echo "Built frameworks:" >&2
-                    find "$DERIVED_DIR" -name "*.framework" >&2
-                    exit 1
+                    DYLIB="$(find "$DERIVED_DIR" \
+                      \( -name "lib${FRAMEWORK_NAME}.dylib" -o -name "${FRAMEWORK_NAME}.dylib" \) \
+                      | head -1)"
+                    MODULE_DIR="$(find "$DERIVED_DIR" \
+                      -type d -name "${FRAMEWORK_NAME}.swiftmodule" \
+                      | head -1)"
+
+                    if [ -z "$DYLIB" ] || [ -z "$MODULE_DIR" ]; then
+                      echo "ERROR: ${FRAMEWORK_NAME}.framework was not emitted and fallback artifacts were not found." >&2
+                      echo "Built frameworks:" >&2
+                      find "$DERIVED_DIR" -name "*.framework" >&2 || true
+                      echo "Built dylibs:" >&2
+                      find "$DERIVED_DIR" -name "*.dylib" >&2 || true
+                      echo "Built swiftmodules:" >&2
+                      find "$DERIVED_DIR" -name "*.swiftmodule" >&2 || true
+                      exit 1
+                    fi
+
+                    BUILT_FRAMEWORK="$PWD/build/${FRAMEWORK_NAME}.framework"
+                    rm -rf "$BUILT_FRAMEWORK"
+                    mkdir -p "$BUILT_FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule"
+                    cp "$DYLIB" "$BUILT_FRAMEWORK/$FRAMEWORK_NAME"
+                    cp -R "$MODULE_DIR/"* "$BUILT_FRAMEWORK/Modules/${FRAMEWORK_NAME}.swiftmodule/"
+
+                    if [ -f "$SRC_DIR/Sources/SwiftProtobuf/PrivacyInfo.xcprivacy" ]; then
+                      cp "$SRC_DIR/Sources/SwiftProtobuf/PrivacyInfo.xcprivacy" "$BUILT_FRAMEWORK/"
+                    fi
+
+                    cat > "$BUILT_FRAMEWORK/Info.plist" <<EOF
+                  <?xml version="1.0" encoding="UTF-8"?>
+                  <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+                  <plist version="1.0">
+                  <dict>
+                    <key>CFBundleDevelopmentRegion</key>
+                    <string>English</string>
+                    <key>CFBundleExecutable</key>
+                    <string>${FRAMEWORK_NAME}</string>
+                    <key>CFBundleIdentifier</key>
+                    <string>${BUNDLE_ID}</string>
+                    <key>CFBundleInfoDictionaryVersion</key>
+                    <string>6.0</string>
+                    <key>CFBundleName</key>
+                    <string>${FRAMEWORK_NAME}</string>
+                    <key>CFBundlePackageType</key>
+                    <string>FMWK</string>
+                    <key>CFBundleShortVersionString</key>
+                    <string>${VERSION}</string>
+                    <key>CFBundleVersion</key>
+                    <string>${VERSION}</string>
+                  </dict>
+                  </plist>
+                  EOF
+
+                    install_name_tool -id "@rpath/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}" "$BUILT_FRAMEWORK/$FRAMEWORK_NAME"
                   fi
 
                   mkdir -p artifacts/framework
