@@ -16,7 +16,17 @@ jobs:
 
     env:
       VERSION: 1.38.1
-      THEOS: ${{ github.workspace }}/theos
+
+    strategy:
+      matrix:
+        scheme: [rootful, rootless, roothide]
+        include:
+          - scheme: rootful
+            scheme_arg: ""
+          - scheme: rootless
+            scheme_arg: "THEOS_PACKAGE_SCHEME=rootless"
+          - scheme: roothide
+            scheme_arg: "THEOS_PACKAGE_SCHEME=roothide"
 
     steps:
       - name: Checkout
@@ -28,44 +38,122 @@ jobs:
           xcode-version: "latest"
 
       - name: Setup Theos
-        uses: actions/checkout@v4
+        uses: waruhachi/theos-action@v2.4.6
         with:
-          repository: theos/theos
-          path: ${{ env.THEOS }}
-          submodules: recursive
+          theos-src: "waruhachi/theos"
+          theos-branch: "main"
+          sdks-src: "waruhachi/sdks"
+          sdks-branch: "main"
 
       - name: Install Dependencies
         run: |
           brew install make dpkg ldid
           echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
 
-      - name: Build SwiftProtobuf rootful
+      - name: Build SwiftProtobuf (${{ matrix.scheme }})
+        shell: bash
         run: |
           make clean || true
-          make package FINALPACKAGE=1
-
-      - name: Build SwiftProtobuf rootless
-        run: |
-          make clean || true
-          make package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+          make package FINALPACKAGE=1 ${{ matrix.scheme_arg }}
 
       - name: List packages
         run: ls -la packages
 
-      - name: Upload build artifacts
+      - name: Upload DEB (${{ matrix.scheme }})
         uses: actions/upload-artifact@v4
         with:
-          name: SwiftProtobuf-${{ env.VERSION }}-packages
+          name: ${{ matrix.scheme }}-package
           path: packages/*.deb
           if-no-files-found: error
 
+  release:
+    needs: build
+    runs-on: macos-14
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    env:
+      VERSION: 1.38.1
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all DEBs
+        uses: actions/download-artifact@v4
+        with:
+          path: all-packages
+
+      - name: Prepare DEBs
+        shell: bash
+        run: |
+          mkdir -p packages
+          cp all-packages/*-package/*.deb packages/
+
+      - name: Rename DEBs to remove build number and debug
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for f in packages/*-*+debug_*.deb; do
+            base=$(basename "$f")
+            new=$(echo "$base" | sed -E 's/-[0-9]+\+debug/_/' | sed -E 's/__+/_/g')
+            mv "packages/$base" "packages/$new"
+          done
+
+      - name: Generate Checksums
+        shell: bash
+        run: |
+          : > release_body.md
+
+          for pkg in packages/*_iphoneos-arm.deb; do
+            if [ -f "$pkg" ]; then
+              echo "### Rootful (iphoneos-arm)" >> release_body.md
+              echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
+              echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
+              echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
+              echo "" >> release_body.md
+            fi
+          done
+
+          for pkg in packages/*_iphoneos-arm64.deb; do
+            if [ -f "$pkg" ]; then
+              echo "### Rootless (iphoneos-arm64)" >> release_body.md
+              echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
+              echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
+              echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
+              echo "" >> release_body.md
+            fi
+          done
+
+          for pkg in packages/*_iphoneos-arm64e.deb; do
+            if [ -f "$pkg" ]; then
+              echo "### RootHide (iphoneos-arm64e)" >> release_body.md
+              echo "* MD5: $(md5 -q "$pkg")" >> release_body.md
+              echo "* SHA1: $(shasum -a 1 "$pkg" | awk '{ print $1 }')" >> release_body.md
+              echo "* SHA256: $(shasum -a 256 "$pkg" | awk '{ print $1 }')" >> release_body.md
+              echo "" >> release_body.md
+            fi
+          done
+
       - name: Create GitHub Release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.VERSION }}
           name: SwiftProtobuf ${{ env.VERSION }}
+          body_path: release_body.md
           files: packages/*.deb
           fail_on_unmatched_files: true
+          draft: false
+          prerelease: false
+          make_latest: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete build artifacts
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: |
+            rootful-package
+            rootless-package
+            roothide-package
+          failOnError: false
