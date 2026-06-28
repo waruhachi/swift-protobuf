@@ -17,7 +17,6 @@ jobs:
         env:
             VERSION: 1.38.1
             FRAMEWORK_NAME: EeveeSwiftProtobuf
-            ORIGINAL_NAME: SwiftProtobuf
             PACKAGE_ID: org.swift.protobuf.swiftprotobuf
             PACKAGE_NAME: SwiftProtobuf
             BUNDLE_ID: org.swift.protobuf.swiftprotobuf
@@ -55,6 +54,14 @@ jobs:
                     -o build/swiftprotobuf.tar.gz
                   tar xzf build/swiftprotobuf.tar.gz -C build
 
+                  SRC_DIR="$PWD/build/swift-protobuf-${VERSION}"
+
+                  # Rename the SwiftPM library product and target before
+                  # xcodebuild generates schemes. xcodebuild build setting
+                  # overrides alone can leave the output named SwiftProtobuf.
+                  perl -0pi -e 's/"SwiftProtobuf"/"EeveeSwiftProtobuf"/g' "$SRC_DIR/Package.swift"
+                  perl -0pi -e 's/name: "EeveeSwiftProtobuf",\n            exclude:/name: "EeveeSwiftProtobuf",\n            path: "Sources\/SwiftProtobuf",\n            exclude:/' "$SRC_DIR/Package.swift"
+
             - name: Build EeveeSwiftProtobuf.framework
               shell: bash
               run: |
@@ -65,7 +72,7 @@ jobs:
 
                   pushd "$SRC_DIR" >/dev/null
                   xcodebuild \
-                    -scheme "$ORIGINAL_NAME" \
+                    -scheme "$FRAMEWORK_NAME" \
                     -destination "generic/platform=iOS" \
                     -configuration Release \
                     -derivedDataPath "$DERIVED_DIR" \
@@ -92,6 +99,7 @@ jobs:
 
                   if [ -z "$BUILT_FRAMEWORK" ]; then
                     echo "ERROR: ${FRAMEWORK_NAME}.framework not found in derived data." >&2
+                    echo "Built frameworks:" >&2
                     find "$DERIVED_DIR" -name "*.framework" >&2
                     exit 1
                   fi
