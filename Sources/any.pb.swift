@@ -141,7 +141,7 @@ public struct Google_Protobuf_Any: @unchecked Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_Any: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Any: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Any"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}type_url\0\u{1}value\0")
 

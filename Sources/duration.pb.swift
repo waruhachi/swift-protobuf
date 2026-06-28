@@ -135,7 +135,7 @@ public struct Google_Protobuf_Duration: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_Duration: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Duration: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Duration"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}seconds\0\u{1}nanos\0")
 

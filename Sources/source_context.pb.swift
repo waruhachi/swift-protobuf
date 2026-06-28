@@ -70,7 +70,7 @@ public struct Google_Protobuf_SourceContext: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_SourceContext: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_SourceContext: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SourceContext"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}file_name\0")
 

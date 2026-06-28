@@ -264,7 +264,7 @@ public struct Google_Protobuf_FieldMask: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_FieldMask: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FieldMask: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FieldMask"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}paths\0")
 

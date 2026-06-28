@@ -247,7 +247,7 @@ public struct Google_Protobuf_BytesValue: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_DoubleValue: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_DoubleValue: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DoubleValue"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -277,7 +277,7 @@ nonisolated extension Google_Protobuf_DoubleValue: Message, _MessageImplementati
   }
 }
 
-nonisolated extension Google_Protobuf_FloatValue: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FloatValue: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FloatValue"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -307,7 +307,7 @@ nonisolated extension Google_Protobuf_FloatValue: Message, _MessageImplementatio
   }
 }
 
-nonisolated extension Google_Protobuf_Int64Value: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Int64Value: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Int64Value"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -337,7 +337,7 @@ nonisolated extension Google_Protobuf_Int64Value: Message, _MessageImplementatio
   }
 }
 
-nonisolated extension Google_Protobuf_UInt64Value: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_UInt64Value: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UInt64Value"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -367,7 +367,7 @@ nonisolated extension Google_Protobuf_UInt64Value: Message, _MessageImplementati
   }
 }
 
-nonisolated extension Google_Protobuf_Int32Value: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Int32Value: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Int32Value"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -397,7 +397,7 @@ nonisolated extension Google_Protobuf_Int32Value: Message, _MessageImplementatio
   }
 }
 
-nonisolated extension Google_Protobuf_UInt32Value: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_UInt32Value: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UInt32Value"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -427,7 +427,7 @@ nonisolated extension Google_Protobuf_UInt32Value: Message, _MessageImplementati
   }
 }
 
-nonisolated extension Google_Protobuf_BoolValue: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_BoolValue: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BoolValue"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -457,7 +457,7 @@ nonisolated extension Google_Protobuf_BoolValue: Message, _MessageImplementation
   }
 }
 
-nonisolated extension Google_Protobuf_StringValue: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_StringValue: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".StringValue"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 
@@ -487,7 +487,7 @@ nonisolated extension Google_Protobuf_StringValue: Message, _MessageImplementati
   }
 }
 
-nonisolated extension Google_Protobuf_BytesValue: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_BytesValue: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".BytesValue"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}value\0")
 

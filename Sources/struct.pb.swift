@@ -231,11 +231,11 @@ public struct Google_Protobuf_ListValue: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_NullValue: _ProtoNameProviding {
+extension Google_Protobuf_NullValue: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0NULL_VALUE\0")
 }
 
-nonisolated extension Google_Protobuf_Struct: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Struct: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Struct"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}fields\0")
 
@@ -265,7 +265,7 @@ nonisolated extension Google_Protobuf_Struct: Message, _MessageImplementationBas
   }
 }
 
-nonisolated extension Google_Protobuf_Value: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Value: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Value"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}null_value\0\u{3}number_value\0\u{3}string_value\0\u{3}bool_value\0\u{3}struct_value\0\u{3}list_value\0")
 
@@ -380,7 +380,7 @@ nonisolated extension Google_Protobuf_Value: Message, _MessageImplementationBase
   }
 }
 
-nonisolated extension Google_Protobuf_ListValue: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_ListValue: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ListValue"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}values\0")
 

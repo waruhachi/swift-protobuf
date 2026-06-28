@@ -276,7 +276,7 @@ public struct Google_Protobuf_Mixin: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_Api: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Api: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Api"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}methods\0\u{1}options\0\u{1}version\0\u{3}source_context\0\u{1}mixins\0\u{1}syntax\0\u{1}edition\0")
 
@@ -345,7 +345,7 @@ nonisolated extension Google_Protobuf_Api: Message, _MessageImplementationBase, 
   }
 }
 
-nonisolated extension Google_Protobuf_Method: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Method: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Method"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{3}request_type_url\0\u{3}request_streaming\0\u{3}response_type_url\0\u{3}response_streaming\0\u{1}options\0\u{1}syntax\0\u{1}edition\0")
 
@@ -410,7 +410,7 @@ nonisolated extension Google_Protobuf_Method: Message, _MessageImplementationBas
   }
 }
 
-nonisolated extension Google_Protobuf_Mixin: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Mixin: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Mixin"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}root\0")
 

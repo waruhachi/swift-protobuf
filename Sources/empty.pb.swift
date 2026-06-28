@@ -71,7 +71,7 @@ public struct Google_Protobuf_Empty: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_Empty: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_Empty: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".Empty"
   public static let _protobuf_nameMap = _NameMap()
 

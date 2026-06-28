@@ -2846,15 +2846,15 @@ public struct Google_Protobuf_GeneratedCodeInfo: Sendable {
 
 fileprivate let _protobuf_package = "google.protobuf"
 
-nonisolated extension Google_Protobuf_Edition: _ProtoNameProviding {
+extension Google_Protobuf_Edition: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0EDITION_UNKNOWN\0\u{1}EDITION_1_TEST_ONLY\0\u{1}EDITION_2_TEST_ONLY\0\u{2}B\u{e}EDITION_LEGACY\0\u{2}b\u{1}EDITION_PROTO2\0\u{1}EDITION_PROTO3\0\u{1}EDITION_2023\0\u{1}EDITION_2024\0\u{1}EDITION_2026\0\u{2}eL\u{2}EDITION_UNSTABLE\0\u{2}N~\u{15}EDITION_99997_TEST_ONLY\0\u{1}EDITION_99998_TEST_ONLY\0\u{1}EDITION_99999_TEST_ONLY\0\u{2}`eg\u{7f}\u{7f}\u{1}EDITION_MAX\0")
 }
 
-nonisolated extension Google_Protobuf_SymbolVisibility: _ProtoNameProviding {
+extension Google_Protobuf_SymbolVisibility: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0VISIBILITY_UNSET\0\u{1}VISIBILITY_LOCAL\0\u{1}VISIBILITY_EXPORT\0")
 }
 
-nonisolated extension Google_Protobuf_FileDescriptorSet: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FileDescriptorSet: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FileDescriptorSet"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}file\0")
 
@@ -2894,7 +2894,7 @@ nonisolated extension Google_Protobuf_FileDescriptorSet: Message, _MessageImplem
   }
 }
 
-nonisolated extension Google_Protobuf_FileDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FileDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FileDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}package\0\u{1}dependency\0\u{3}message_type\0\u{3}enum_type\0\u{1}service\0\u{1}extension\0\u{1}options\0\u{3}source_code_info\0\u{3}public_dependency\0\u{3}weak_dependency\0\u{1}syntax\0\u{2}\u{2}edition\0\u{3}option_dependency\0")
 
@@ -3003,7 +3003,7 @@ nonisolated extension Google_Protobuf_FileDescriptorProto: Message, _MessageImpl
   }
 }
 
-nonisolated extension Google_Protobuf_DescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_DescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".DescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}field\0\u{3}nested_type\0\u{3}enum_type\0\u{3}extension_range\0\u{1}extension\0\u{1}options\0\u{3}oneof_decl\0\u{3}reserved_range\0\u{3}reserved_name\0\u{1}visibility\0")
 
@@ -3160,7 +3160,7 @@ nonisolated extension Google_Protobuf_DescriptorProto: Message, _MessageImplemen
   }
 }
 
-nonisolated extension Google_Protobuf_DescriptorProto.ExtensionRange: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_DescriptorProto.ExtensionRange: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_DescriptorProto.protoMessageName + ".ExtensionRange"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}start\0\u{1}end\0\u{1}options\0")
 
@@ -3209,7 +3209,7 @@ nonisolated extension Google_Protobuf_DescriptorProto.ExtensionRange: Message, _
   }
 }
 
-nonisolated extension Google_Protobuf_DescriptorProto.ReservedRange: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_DescriptorProto.ReservedRange: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_DescriptorProto.protoMessageName + ".ReservedRange"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}start\0\u{1}end\0")
 
@@ -3248,7 +3248,7 @@ nonisolated extension Google_Protobuf_DescriptorProto.ReservedRange: Message, _M
   }
 }
 
-nonisolated extension Google_Protobuf_ExtensionRangeOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_ExtensionRangeOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ExtensionRangeOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\u{2}declaration\0\u{1}verification\0\u{2}/features\0\u{4}u\u{e}uninterpreted_option\0")
 
@@ -3309,11 +3309,11 @@ nonisolated extension Google_Protobuf_ExtensionRangeOptions: Message, _MessageIm
   }
 }
 
-nonisolated extension Google_Protobuf_ExtensionRangeOptions.VerificationState: _ProtoNameProviding {
+extension Google_Protobuf_ExtensionRangeOptions.VerificationState: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0DECLARATION\0\u{1}UNVERIFIED\0")
 }
 
-nonisolated extension Google_Protobuf_ExtensionRangeOptions.Declaration: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_ExtensionRangeOptions.Declaration: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_ExtensionRangeOptions.protoMessageName + ".Declaration"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}number\0\u{3}full_name\0\u{1}type\0\u{2}\u{2}reserved\0\u{1}repeated\0\u{c}\u{4}\u{1}")
 
@@ -3367,7 +3367,7 @@ nonisolated extension Google_Protobuf_ExtensionRangeOptions.Declaration: Message
   }
 }
 
-nonisolated extension Google_Protobuf_FieldDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FieldDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FieldDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}extendee\0\u{1}number\0\u{1}label\0\u{1}type\0\u{3}type_name\0\u{3}default_value\0\u{1}options\0\u{3}oneof_index\0\u{3}json_name\0\u{4}\u{7}proto3_optional\0")
 
@@ -3456,15 +3456,15 @@ nonisolated extension Google_Protobuf_FieldDescriptorProto: Message, _MessageImp
   }
 }
 
-nonisolated extension Google_Protobuf_FieldDescriptorProto.TypeEnum: _ProtoNameProviding {
+extension Google_Protobuf_FieldDescriptorProto.TypeEnum: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}TYPE_DOUBLE\0\u{1}TYPE_FLOAT\0\u{1}TYPE_INT64\0\u{1}TYPE_UINT64\0\u{1}TYPE_INT32\0\u{1}TYPE_FIXED64\0\u{1}TYPE_FIXED32\0\u{1}TYPE_BOOL\0\u{1}TYPE_STRING\0\u{1}TYPE_GROUP\0\u{1}TYPE_MESSAGE\0\u{1}TYPE_BYTES\0\u{1}TYPE_UINT32\0\u{1}TYPE_ENUM\0\u{1}TYPE_SFIXED32\0\u{1}TYPE_SFIXED64\0\u{1}TYPE_SINT32\0\u{1}TYPE_SINT64\0")
 }
 
-nonisolated extension Google_Protobuf_FieldDescriptorProto.Label: _ProtoNameProviding {
+extension Google_Protobuf_FieldDescriptorProto.Label: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}LABEL_OPTIONAL\0\u{1}LABEL_REQUIRED\0\u{1}LABEL_REPEATED\0")
 }
 
-nonisolated extension Google_Protobuf_OneofDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_OneofDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OneofDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}options\0")
 
@@ -3508,7 +3508,7 @@ nonisolated extension Google_Protobuf_OneofDescriptorProto: Message, _MessageImp
   }
 }
 
-nonisolated extension Google_Protobuf_EnumDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_EnumDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EnumDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}value\0\u{1}options\0\u{3}reserved_range\0\u{3}reserved_name\0\u{1}visibility\0")
 
@@ -3625,7 +3625,7 @@ nonisolated extension Google_Protobuf_EnumDescriptorProto: Message, _MessageImpl
   }
 }
 
-nonisolated extension Google_Protobuf_EnumDescriptorProto.EnumReservedRange: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_EnumDescriptorProto.EnumReservedRange: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_EnumDescriptorProto.protoMessageName + ".EnumReservedRange"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}start\0\u{1}end\0")
 
@@ -3664,7 +3664,7 @@ nonisolated extension Google_Protobuf_EnumDescriptorProto.EnumReservedRange: Mes
   }
 }
 
-nonisolated extension Google_Protobuf_EnumValueDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_EnumValueDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EnumValueDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}number\0\u{1}options\0")
 
@@ -3713,7 +3713,7 @@ nonisolated extension Google_Protobuf_EnumValueDescriptorProto: Message, _Messag
   }
 }
 
-nonisolated extension Google_Protobuf_ServiceDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_ServiceDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ServiceDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{1}method\0\u{1}options\0\u{b}stream\0\u{c}\u{4}\u{1}")
 
@@ -3763,7 +3763,7 @@ nonisolated extension Google_Protobuf_ServiceDescriptorProto: Message, _MessageI
   }
 }
 
-nonisolated extension Google_Protobuf_MethodDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_MethodDescriptorProto: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MethodDescriptorProto"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}name\0\u{3}input_type\0\u{3}output_type\0\u{1}options\0\u{3}client_streaming\0\u{3}server_streaming\0")
 
@@ -3879,7 +3879,7 @@ nonisolated extension Google_Protobuf_MethodDescriptorProto: Message, _MessageIm
   }
 }
 
-nonisolated extension Google_Protobuf_FileOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FileOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FileOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}java_package\0\u{4}\u{7}java_outer_classname\0\u{3}optimize_for\0\u{3}java_multiple_files\0\u{3}go_package\0\u{4}\u{5}cc_generic_services\0\u{3}java_generic_services\0\u{3}py_generic_services\0\u{4}\u{2}java_generate_equals_and_hash\0\u{2}\u{3}deprecated\0\u{4}\u{4}java_string_check_utf8\0\u{4}\u{4}cc_enable_arenas\0\u{4}\u{5}objc_class_prefix\0\u{3}csharp_namespace\0\u{4}\u{2}swift_prefix\0\u{3}php_class_prefix\0\u{3}php_namespace\0\u{4}\u{3}php_metadata_namespace\0\u{3}ruby_package\0\u{2}\u{5}features\0\u{4}u\u{e}uninterpreted_option\0\u{b}php_generic_services\0\u{c}*\u{1}\u{c}&\u{1}")
 
@@ -4107,11 +4107,11 @@ nonisolated extension Google_Protobuf_FileOptions: Message, _MessageImplementati
   }
 }
 
-nonisolated extension Google_Protobuf_FileOptions.OptimizeMode: _ProtoNameProviding {
+extension Google_Protobuf_FileOptions.OptimizeMode: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}SPEED\0\u{1}CODE_SIZE\0\u{1}LITE_RUNTIME\0")
 }
 
-nonisolated extension Google_Protobuf_MessageOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_MessageOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MessageOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}message_set_wire_format\0\u{3}no_standard_descriptor_accessor\0\u{1}deprecated\0\u{4}\u{4}map_entry\0\u{4}\u{4}deprecated_legacy_json_field_conflicts\0\u{1}features\0\u{4}[\u{f}uninterpreted_option\0\u{c}\u{4}\u{1}\u{c}\u{5}\u{1}\u{c}\u{6}\u{1}\u{c}\u{8}\u{1}\u{c}\u{9}\u{1}")
 
@@ -4187,7 +4187,7 @@ nonisolated extension Google_Protobuf_MessageOptions: Message, _MessageImplement
   }
 }
 
-nonisolated extension Google_Protobuf_FieldOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FieldOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}ctype\0\u{1}packed\0\u{1}deprecated\0\u{2}\u{2}lazy\0\u{1}jstype\0\u{2}\u{4}weak\0\u{4}\u{5}unverified_lazy\0\u{3}debug_redact\0\u{1}retention\0\u{2}\u{2}targets\0\u{3}edition_defaults\0\u{1}features\0\u{3}feature_support\0\u{4}Q\u{f}uninterpreted_option\0\u{c}\u{4}\u{1}\u{c}\u{12}\u{1}")
 
@@ -4366,23 +4366,23 @@ nonisolated extension Google_Protobuf_FieldOptions: Message, _MessageImplementat
   }
 }
 
-nonisolated extension Google_Protobuf_FieldOptions.CType: _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions.CType: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0STRING\0\u{1}CORD\0\u{1}STRING_PIECE\0")
 }
 
-nonisolated extension Google_Protobuf_FieldOptions.JSType: _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions.JSType: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0JS_NORMAL\0\u{1}JS_STRING\0\u{1}JS_NUMBER\0")
 }
 
-nonisolated extension Google_Protobuf_FieldOptions.OptionRetention: _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions.OptionRetention: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0RETENTION_UNKNOWN\0\u{1}RETENTION_RUNTIME\0\u{1}RETENTION_SOURCE\0")
 }
 
-nonisolated extension Google_Protobuf_FieldOptions.OptionTargetType: _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions.OptionTargetType: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0TARGET_TYPE_UNKNOWN\0\u{1}TARGET_TYPE_FILE\0\u{1}TARGET_TYPE_EXTENSION_RANGE\0\u{1}TARGET_TYPE_MESSAGE\0\u{1}TARGET_TYPE_FIELD\0\u{1}TARGET_TYPE_ONEOF\0\u{1}TARGET_TYPE_ENUM\0\u{1}TARGET_TYPE_ENUM_ENTRY\0\u{1}TARGET_TYPE_SERVICE\0\u{1}TARGET_TYPE_METHOD\0")
 }
 
-nonisolated extension Google_Protobuf_FieldOptions.EditionDefault: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions.EditionDefault: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_FieldOptions.protoMessageName + ".EditionDefault"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\u{2}value\0\u{1}edition\0")
 
@@ -4421,7 +4421,7 @@ nonisolated extension Google_Protobuf_FieldOptions.EditionDefault: Message, _Mes
   }
 }
 
-nonisolated extension Google_Protobuf_FieldOptions.FeatureSupport: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FieldOptions.FeatureSupport: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_FieldOptions.protoMessageName + ".FeatureSupport"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}edition_introduced\0\u{3}edition_deprecated\0\u{3}deprecation_warning\0\u{3}edition_removed\0\u{3}removal_error\0")
 
@@ -4475,7 +4475,7 @@ nonisolated extension Google_Protobuf_FieldOptions.FeatureSupport: Message, _Mes
   }
 }
 
-nonisolated extension Google_Protobuf_OneofOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_OneofOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".OneofOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}features\0\u{4}f\u{f}uninterpreted_option\0")
 
@@ -4526,7 +4526,7 @@ nonisolated extension Google_Protobuf_OneofOptions: Message, _MessageImplementat
   }
 }
 
-nonisolated extension Google_Protobuf_EnumOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_EnumOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EnumOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{4}\u{2}allow_alias\0\u{1}deprecated\0\u{4}\u{3}deprecated_legacy_json_field_conflicts\0\u{1}features\0\u{4}`\u{f}uninterpreted_option\0\u{c}\u{5}\u{1}")
 
@@ -4592,7 +4592,7 @@ nonisolated extension Google_Protobuf_EnumOptions: Message, _MessageImplementati
   }
 }
 
-nonisolated extension Google_Protobuf_EnumValueOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_EnumValueOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".EnumValueOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}deprecated\0\u{1}features\0\u{3}debug_redact\0\u{3}feature_support\0\u{4}c\u{f}uninterpreted_option\0")
 
@@ -4708,7 +4708,7 @@ nonisolated extension Google_Protobuf_EnumValueOptions: Message, _MessageImpleme
   }
 }
 
-nonisolated extension Google_Protobuf_ServiceOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_ServiceOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".ServiceOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}!deprecated\0\u{1}features\0\u{4}E\u{f}uninterpreted_option\0")
 
@@ -4764,7 +4764,7 @@ nonisolated extension Google_Protobuf_ServiceOptions: Message, _MessageImplement
   }
 }
 
-nonisolated extension Google_Protobuf_MethodOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_MethodOptions: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".MethodOptions"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}!deprecated\0\u{3}idempotency_level\0\u{1}features\0\u{4}D\u{f}uninterpreted_option\0")
 
@@ -4825,11 +4825,11 @@ nonisolated extension Google_Protobuf_MethodOptions: Message, _MessageImplementa
   }
 }
 
-nonisolated extension Google_Protobuf_MethodOptions.IdempotencyLevel: _ProtoNameProviding {
+extension Google_Protobuf_MethodOptions.IdempotencyLevel: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0IDEMPOTENCY_UNKNOWN\0\u{1}NO_SIDE_EFFECTS\0\u{1}IDEMPOTENT\0")
 }
 
-nonisolated extension Google_Protobuf_UninterpretedOption: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_UninterpretedOption: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".UninterpretedOption"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\u{2}name\0\u{3}identifier_value\0\u{3}positive_int_value\0\u{3}negative_int_value\0\u{3}double_value\0\u{3}string_value\0\u{3}aggregate_value\0")
 
@@ -4898,7 +4898,7 @@ nonisolated extension Google_Protobuf_UninterpretedOption: Message, _MessageImpl
   }
 }
 
-nonisolated extension Google_Protobuf_UninterpretedOption.NamePart: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_UninterpretedOption.NamePart: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_UninterpretedOption.protoMessageName + ".NamePart"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}name_part\0\u{3}is_extension\0")
 
@@ -4943,7 +4943,7 @@ nonisolated extension Google_Protobuf_UninterpretedOption.NamePart: Message, _Me
   }
 }
 
-nonisolated extension Google_Protobuf_FeatureSet: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FeatureSet"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{3}field_presence\0\u{3}enum_type\0\u{3}repeated_field_encoding\0\u{3}utf8_validation\0\u{3}message_encoding\0\u{3}json_format\0\u{3}enforce_naming_style\0\u{3}default_symbol_visibility\0\u{3}enforce_proto_limits\0\u{c}g\u{f}\u{1}")
 
@@ -5026,35 +5026,35 @@ nonisolated extension Google_Protobuf_FeatureSet: Message, _MessageImplementatio
   }
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.FieldPresence: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.FieldPresence: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0FIELD_PRESENCE_UNKNOWN\0\u{1}EXPLICIT\0\u{1}IMPLICIT\0\u{1}LEGACY_REQUIRED\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.EnumType: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.EnumType: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0ENUM_TYPE_UNKNOWN\0\u{1}OPEN\0\u{1}CLOSED\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.RepeatedFieldEncoding: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.RepeatedFieldEncoding: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0REPEATED_FIELD_ENCODING_UNKNOWN\0\u{1}PACKED\0\u{1}EXPANDED\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.Utf8Validation: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.Utf8Validation: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0UTF8_VALIDATION_UNKNOWN\0\u{2}\u{2}VERIFY\0\u{1}NONE\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.MessageEncoding: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.MessageEncoding: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0MESSAGE_ENCODING_UNKNOWN\0\u{1}LENGTH_PREFIXED\0\u{1}DELIMITED\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.JsonFormat: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.JsonFormat: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0JSON_FORMAT_UNKNOWN\0\u{1}ALLOW\0\u{1}LEGACY_BEST_EFFORT\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.EnforceNamingStyle: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.EnforceNamingStyle: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0ENFORCE_NAMING_STYLE_UNKNOWN\0\u{1}STYLE2024\0\u{1}STYLE_LEGACY\0\u{1}STYLE2026\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.VisibilityFeature: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.VisibilityFeature: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_FeatureSet.protoMessageName + ".VisibilityFeature"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{c}\u{1}\u{7f}\u{7f}\u{7f}\u{7f}\u{1f}")
 
@@ -5073,11 +5073,11 @@ nonisolated extension Google_Protobuf_FeatureSet.VisibilityFeature: Message, _Me
   }
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.VisibilityFeature.DefaultSymbolVisibility: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.VisibilityFeature.DefaultSymbolVisibility: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0DEFAULT_SYMBOL_VISIBILITY_UNKNOWN\0\u{1}EXPORT_ALL\0\u{1}EXPORT_TOP_LEVEL\0\u{1}LOCAL_ALL\0\u{1}STRICT\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.ProtoLimitsFeature: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.ProtoLimitsFeature: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_FeatureSet.protoMessageName + ".ProtoLimitsFeature"
   public static let _protobuf_nameMap = _NameMap()
 
@@ -5096,11 +5096,11 @@ nonisolated extension Google_Protobuf_FeatureSet.ProtoLimitsFeature: Message, _M
   }
 }
 
-nonisolated extension Google_Protobuf_FeatureSet.ProtoLimitsFeature.EnforceProtoLimits: _ProtoNameProviding {
+extension Google_Protobuf_FeatureSet.ProtoLimitsFeature.EnforceProtoLimits: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0PROTO_LIMITS_UNKNOWN\0\u{1}LEGACY_NO_EXPLICIT_LIMITS\0\u{1}PROTO_LIMITS2026\0")
 }
 
-nonisolated extension Google_Protobuf_FeatureSetDefaults: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FeatureSetDefaults: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".FeatureSetDefaults"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}defaults\0\u{4}\u{3}minimum_edition\0\u{3}maximum_edition\0")
 
@@ -5149,7 +5149,7 @@ nonisolated extension Google_Protobuf_FeatureSetDefaults: Message, _MessageImple
   }
 }
 
-nonisolated extension Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefault: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefault: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_FeatureSetDefaults.protoMessageName + ".FeatureSetEditionDefault"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\u{3}edition\0\u{3}overridable_features\0\u{3}fixed_features\0\u{b}features\0\u{c}\u{1}\u{1}\u{c}\u{2}\u{1}")
 
@@ -5245,7 +5245,7 @@ nonisolated extension Google_Protobuf_FeatureSetDefaults.FeatureSetEditionDefaul
   }
 }
 
-nonisolated extension Google_Protobuf_SourceCodeInfo: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_SourceCodeInfo: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".SourceCodeInfo"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}location\0")
 
@@ -5284,7 +5284,7 @@ nonisolated extension Google_Protobuf_SourceCodeInfo: Message, _MessageImplement
   }
 }
 
-nonisolated extension Google_Protobuf_SourceCodeInfo.Location: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_SourceCodeInfo.Location: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_SourceCodeInfo.protoMessageName + ".Location"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}path\0\u{1}span\0\u{3}leading_comments\0\u{3}trailing_comments\0\u{4}\u{2}leading_detached_comments\0")
 
@@ -5338,7 +5338,7 @@ nonisolated extension Google_Protobuf_SourceCodeInfo.Location: Message, _Message
   }
 }
 
-nonisolated extension Google_Protobuf_GeneratedCodeInfo: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_GeneratedCodeInfo: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = _protobuf_package + ".GeneratedCodeInfo"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}annotation\0")
 
@@ -5368,7 +5368,7 @@ nonisolated extension Google_Protobuf_GeneratedCodeInfo: Message, _MessageImplem
   }
 }
 
-nonisolated extension Google_Protobuf_GeneratedCodeInfo.Annotation: Message, _MessageImplementationBase, _ProtoNameProviding {
+extension Google_Protobuf_GeneratedCodeInfo.Annotation: Message, _MessageImplementationBase, _ProtoNameProviding {
   public static let protoMessageName: String = Google_Protobuf_GeneratedCodeInfo.protoMessageName + ".Annotation"
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{1}path\0\u{3}source_file\0\u{1}begin\0\u{1}end\0\u{1}semantic\0")
 
@@ -5422,6 +5422,6 @@ nonisolated extension Google_Protobuf_GeneratedCodeInfo.Annotation: Message, _Me
   }
 }
 
-nonisolated extension Google_Protobuf_GeneratedCodeInfo.Annotation.Semantic: _ProtoNameProviding {
+extension Google_Protobuf_GeneratedCodeInfo.Annotation.Semantic: _ProtoNameProviding {
   public static let _protobuf_nameMap = _NameMap(bytecode: "\0\u{2}\0NONE\0\u{1}SET\0\u{1}ALIAS\0")
 }
